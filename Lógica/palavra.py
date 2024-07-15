@@ -9,12 +9,14 @@ class Palavra:
         self.letra_adivinhada = set()
 
     def verificar_letra(self, letra):
+
         # Verificamos se a letra está na palavra e se não foi adivinhada ainda
         if letra in self.palavra and letra not in self.letra_adivinhada:
-            # Adiciona ao letra_adivinhada caso tenha sido acertada
-            self.letra_adivinhada.add(letra)
-            # Para fazer cada letra 'virar um int' para retornar um índice e a letra
-            for i, char in enumerate(self.palavra):
+
+            self.letra_adivinhada.add(letra)  # Adiciona ao letra_adivinhada caso tenha sido acertada
+
+            for i, char in enumerate(
+                    self.palavra):  # Para fazer cada letra 'virar um int' para retornar um índice e a letra
                 if char == letra:
                     # Atualizamos a posição com a letra correta
                     self.progresso[i] = letra
