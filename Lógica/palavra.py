@@ -1,29 +1,26 @@
+# palavra.py
 import random
 
 
 class Palavra:
-
-    def __init__(self, lita_palavra):
-        self.palavra = random.choice(lita_palavra)
+    def __init__(self, lista_palavra):
+        self.palavra = random.choice(lista_palavra)
         self.progresso = ['_' for _ in self.palavra]
         self.letra_adivinhada = set()
 
     def verificar_letra(self, letra):
+        # Converte a letra digitada para minúscula
+        letra = letra.lower()
 
-        # Verificamos se a letra está na palavra e se não foi adivinhada ainda
-        if letra in self.palavra and letra not in self.letra_adivinhada:
-
-            self.letra_adivinhada.add(letra)  # Adiciona ao letra_adivinhada caso tenha sido acertada
-
-            for i, char in enumerate(
-                    self.palavra):  # Para fazer cada letra 'virar um int' para retornar um índice e a letra
-                if char == letra:
-                    # Atualizamos a posição com a letra correta
-                    self.progresso[i] = letra
+        # Verifica se a letra está na palavra e se não foi adivinhada ainda
+        if letra in self.palavra.lower() and letra not in self.letra_adivinhada:
+            self.letra_adivinhada.add(letra)
+            for i, char in enumerate(self.palavra):
+                if char.lower() == letra:  # Comparação case-insensitive
+                    self.progresso[i] = self.palavra[i]
             return True
         return False
 
-    # Métodos para verificar se teve progresso e se caso tenha, mostrar ele
     def adivinhado(self):
         return '_' not in self.progresso
 
